@@ -10,6 +10,7 @@ class ContaBancaria:
     
     def padrao_brasileiro(self, valor):
         return f"R${str(round(valor,2)).replace('.',',')}"
+    
     def adiciona_historico(self, tipo_transferencia, valor, tempo, saldo, destinatario = None):
         
         if tipo_transferencia == "Saque":
@@ -43,9 +44,7 @@ class ContaBancaria:
                                         "tempo": tempo,
                                         "saldo": saldo})
         else:
-            print(f"Transação {tipo_transferencia} invalida")
-
-        
+            print(f"Transação {tipo_transferencia} invalida")       
 
     def depositar(self, valor, destino = None):
         if valor > 0:
@@ -62,10 +61,10 @@ class ContaBancaria:
             self.__saldo -= valor
             self.adiciona_historico("Saque", valor, int(time.time()), self.saldo, destino)
             
-            print(f"O saque de valor R${self.padrao_brasileiro(valor)} foi concluido")
+            print(f"O saque de valor {self.padrao_brasileiro(valor)} foi concluido")
         elif valor <= self.saldo + self.limite and self.saldo - valor >= -self.limite:
             usar_limite = input(f"Gostaria de usar seu limite, R${self.padrao_brasileiro(self.limite)}, para a operação? (S/N)")
-            if usar_limite == 's':
+            if usar_limite == 's' or usar_limite == 'S':
                 self.__saldo -= valor
                 self.adiciona_historico("Saque", valor, int(time.time()), self.saldo, destino)
                 return True
