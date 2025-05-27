@@ -26,9 +26,21 @@ class Veiculo:
 
     def set_placa(self,nova_placa) -> bool:
         """Retorna a placa do veiculo"""
-        if re.match("[A-Z][A-Z][A-Z][0-9][A-Z][0-9][0-9]", nova_placa):    
-            self.__placa = nova_placa
-            return True
+        # if re.match("[A-Z][A-Z][A-Z][0-9][A-Z][0-9][0-9]", nova_placa):    
+        #     self.__placa = nova_placa
+        #     return True
+        # return False   
+        
+        if len(nova_placa) == 7:
+            for i in range(len(nova_placa)):
+                if (letra.[i] and (i < 3 or i == 4)) or (letra.[i] and (i == 3 or i > 4)):
+                    i+=1
+                else:
+                    return False
+            else:                
+                self.__placa = nova_placa
+                return True
+            
         return False    
     def get_placa(self) -> str:
         """Retorna a placa do veiculo"""

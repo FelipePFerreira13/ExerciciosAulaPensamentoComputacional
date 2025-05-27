@@ -32,3 +32,6 @@ class Carro_Eletrico(Veiculo):
     
     def calcular_consumo(self, distancia):
         return distancia/0.15
+    
+    def recarregar(self):
+        print("Carro Recarregado")

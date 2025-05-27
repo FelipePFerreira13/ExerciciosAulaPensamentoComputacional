@@ -12,7 +12,9 @@ moto1 = Moto(placa, "Moto", "Teste", 2025, "Prata", 2000, "Gasolina", 200, "test
 
 placa = "CCC2333"
 carro_eletrico1 = Carro_Eletrico(placa, "Carro Eletrico", "Teste", 2025, "Prata", 2000, "Litio", 2, 3, 50)
-    
+
+carro_eletrico1.recarregar() 
+
 print(f"O consumo do carro foi {carro1.calcular_consumo(150)} L")
 print(f"O consumo da moto foi {moto1.calcular_consumo(150)} L")
 print(f"O consumo do carro eletrico foi {carro_eletrico1.calcular_consumo(150)} kWh")
