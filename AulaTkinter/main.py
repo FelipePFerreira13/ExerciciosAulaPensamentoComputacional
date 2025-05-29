@@ -9,7 +9,7 @@ def mostrar_opcao():
     rotulo.config(text = texto)
 
 
-def apagar(x):
+def botao(x):
     global lista
     lista.append(x)
     if len(lista)>2:
@@ -22,16 +22,9 @@ def apagar(x):
         elif lista[0] == 3:
             opcao3.set(False)
             lista.pop(0)
+        
+    mostrar_opcao()
 
-def botao1():
-    apagar(1)
-    mostrar_opcao()
-def botao2():
-    apagar(2)
-    mostrar_opcao()
-def botao3():
-    apagar(3)
-    mostrar_opcao()
 
 janela = tk.Tk()
 janela.title("Exemplo")
@@ -39,9 +32,9 @@ janela.geometry("800x600")
 opcao1 = tk.BooleanVar()
 opcao2 = tk.BooleanVar()
 opcao3 = tk.BooleanVar()
-tk.Radiobutton(janela, text="Opção A", variable=opcao1, value=True,command=botao1).pack()
-tk.Radiobutton(janela, text="Opção B", variable=opcao2, value=True,command=botao2).pack()
-tk.Radiobutton(janela, text="Opção C", variable=opcao3, value=True,command=botao3).pack()
+tk.Radiobutton(janela, text="Opção A", variable=opcao1, value=True,command=botao(1)).pack()
+tk.Radiobutton(janela, text="Opção B", variable=opcao2, value=True,command=botao(2)).pack()
+tk.Radiobutton(janela, text="Opção C", variable=opcao3, value=True,command=botao(3)).pack()
 rotulo = tk.Label(janela, text="Escolheu: A")
 rotulo.pack(pady=10)
 janela.mainloop()
