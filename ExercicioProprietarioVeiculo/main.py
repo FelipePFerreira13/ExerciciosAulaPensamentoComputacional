@@ -1,2 +1,4 @@
-from utils.Verificadores import Validar
+from utils.Validadores import Validar
+from screens.tela import Tela_Principal
 
+Tela_Principal()
