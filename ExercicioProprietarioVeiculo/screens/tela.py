@@ -1,30 +1,117 @@
 import tkinter as tk
+from .Cadastro_Veiculos import Cadastro_Veiculos 
+from .Listar_Cadastros import Listar_Cadastros 
+from .Cadastro_Proprietarios import Cadastro_Proprietario 
 
 class Tela_Principal:
     
     
     def mostrar_opcao():
         rotulo.config(text=f"Escolheu: {opcao.get()}")
-
+    
+    def abrir_cadastro_veiculos(self):
+        Cadastro_Veiculos()
+        
+    def abrir_cadastro_proprietario(self):
+        Cadastro_Proprietario()
+        
+    def abrir_listar_cadastros(self):
+        Listar_Cadastros()
+        
     def __init__(self):        
 
         janela = tk.Tk()
-        janela.title("Cadastro de Veículo")
+        def button_clicked():
+            print("Button clicked!")
+        janela.title("Tela Principal")
         janela.geometry("800x600")
-        opcao = tk.StringVar(value=1)
-        tk.Radiobutton(janela, text="Carro", variable=opcao, value=1).pack()
-        tk.Radiobutton(janela, text="Moto", variable=opcao, value=2).pack()
-        tk.Radiobutton(janela, text="Caminhão", variable=opcao, value=3).pack()        
-        entrada1 = tk.Entry(janela)
-        entrada1.pack()
-        entrada1 = tk.Entry(janela)
-        entrada1.pack()
-        entrada1 = tk.Entry(janela)
-        entrada1.pack()
-        entrada1 = tk.Entry(janela)
-        entrada1.pack()
-        rotulo = tk.Label(janela, text="Escolheu: Carro")
-        rotulo.pack(pady=10)
+        
+        # Creating a button with specified options
+        cadastro_veiculos = tk.Button(janela, 
+                        text="Cadastrar Veículo", 
+                        command=self.abrir_cadastro_veiculos,
+                        activebackground="blue", 
+                        activeforeground="white",
+                        anchor="center",
+                        bd=3,
+                        bg="lightgray",
+                        cursor="hand2",
+                        disabledforeground="gray",
+                        fg="black",
+                        font=("Arial", 12),
+                        height=2,
+                        highlightbackground="black",
+                        highlightcolor="green",
+                        highlightthickness=2,
+                        justify="center",
+                        overrelief="raised",
+                        padx=10,
+                        pady=5,
+                        width=15,
+                        wraplength=100)
+
+        cadastro_proprietario = tk.Button(janela, 
+                        text="Cadastrar Proprietário", 
+                        command=self.abrir_cadastro_proprietario,
+                        activebackground="blue", 
+                        activeforeground="white",
+                        anchor="center",
+                        bd=3,
+                        bg="lightgray",
+                        cursor="hand2",
+                        disabledforeground="gray",
+                        fg="black",
+                        font=("Arial", 12),
+                        height=2,
+                        highlightbackground="black",
+                        highlightcolor="green",
+                        highlightthickness=2,
+                        justify="center",
+                        overrelief="raised",
+                        padx=10,
+                        pady=5,
+                        width=15,
+                        wraplength=100)
+        
+        listar_cadastros = tk.Button(janela, 
+                        text="Listar Cadastros", 
+                        command=self.abrir_listar_cadastros,
+                        activebackground="blue", 
+                        activeforeground="white",
+                        anchor="center",
+                        bd=3,
+                        bg="lightgray",
+                        cursor="hand2",
+                        disabledforeground="gray",
+                        fg="black",
+                        font=("Arial", 12),
+                        height=2,
+                        highlightbackground="black",
+                        highlightcolor="green",
+                        highlightthickness=2,
+                        justify="center",
+                        overrelief="raised",
+                        padx=10,
+                        pady=5,
+                        width=15,
+                        wraplength=100)
+
+        cadastro_veiculos.pack(padx=20, pady=20)
+        cadastro_proprietario.pack(padx=20, pady=20)
+        listar_cadastros.pack(padx=20, pady=20)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         janela.mainloop()
         
         
