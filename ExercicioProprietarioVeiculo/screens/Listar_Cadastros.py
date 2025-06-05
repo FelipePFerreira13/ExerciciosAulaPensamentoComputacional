@@ -1,15 +1,14 @@
 import tkinter as tk
-from models.Proprietarios import Proprietario
+from models.Proprietario import Proprietario
 from models.Carro import Carro
 from models.Caminhao import Caminhao
 from models.Moto import Moto
-from database.database_commands import Get_Proprietarios
 
 class Listar_Cadastros:
     
-    def __init__(self):
+    def __init__(self, tela):
 
-        top = tk.Tk()  
+        top = tela
         
         listbox = tk.Listbox(top, height=10, 
                              width=15, 

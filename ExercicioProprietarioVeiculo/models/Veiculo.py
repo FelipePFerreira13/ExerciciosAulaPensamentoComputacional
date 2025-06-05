@@ -1,4 +1,3 @@
-from database.database import get_connection
 
 class Veiculo:
     def __init__(self, placa, marca, modelo, ano, cnpj_proprietario = ""):

@@ -7,9 +7,9 @@ class Cadastro_Veiculos:
     def mostrar_opcao():
         rotulo.config(text=f"Escolheu: {opcao.get()}")
 
-    def __init__(self):        
+    def __init__(self, tela):        
 
-        janela = tk.Tk()
+        janela = tela
         janela.title("Cadastro de Veículo")
         janela.geometry("800x600")
         opcao = tk.StringVar(value=1)

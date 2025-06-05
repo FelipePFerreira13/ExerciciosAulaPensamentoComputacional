@@ -2,7 +2,7 @@ import tkinter as tk
 from .Cadastro_Veiculos import Cadastro_Veiculos 
 from .Listar_Cadastros import Listar_Cadastros 
 from .Cadastro_Proprietarios import Cadastro_Proprietario 
-
+from .Status_Tela import Status_Tela 
 class Tela_Principal:
     
     
@@ -19,7 +19,9 @@ class Tela_Principal:
         Listar_Cadastros()
         
     def __init__(self):        
-
+        self.carrega()
+        status = Status_Tela()
+    def carrega(self):
         janela = tk.Tk()
         def button_clicked():
             print("Button clicked!")

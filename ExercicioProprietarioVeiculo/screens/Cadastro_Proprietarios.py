@@ -1,12 +1,12 @@
 import tkinter as tk
-from models.Proprietarios import Proprietario
+from models.Proprietario import Proprietario
 
 class Cadastro_Proprietario:
     
 
-    def __init__(self):        
+    def __init__(self, tela):        
 
-        janela = tk.Tk()
+        janela = tela
         janela.title("Cadastro de Proprietário")
         janela.geometry("800x600")
         nome = tk.Entry(janela)
