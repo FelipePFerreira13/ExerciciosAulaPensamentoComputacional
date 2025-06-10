@@ -1,14 +1,13 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import tkinter as tk
-from models.Proprietario import Proprietario
-from models.Carro import Carro
-from models.Caminhao import Caminhao
-from models.Moto import Moto
-
+from database.database_tools import Db_Tools
 class Listar_Cadastros:
     
-    def __init__(self, tela):
-
-        top = tela
+    def __init__(self):
+        
+        top = tk.Tk()
         
         listbox = tk.Listbox(top, height=10, 
                              width=15, 

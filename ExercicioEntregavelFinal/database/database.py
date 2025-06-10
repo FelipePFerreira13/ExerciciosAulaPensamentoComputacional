@@ -2,9 +2,8 @@ from __future__ import annotations
 from typing import List
 import os
 
-from sqlalchemy import create_engine, Column, Integer, DECIMAL, String, Date, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase, relationship
+from sqlalchemy import Column, Integer, DECIMAL, String, Date, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, declarative_base, relationship
 
 Base = declarative_base()
 

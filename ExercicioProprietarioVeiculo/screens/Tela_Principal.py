@@ -1,35 +1,30 @@
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import tkinter as tk
-from .Cadastro_Veiculos import Cadastro_Veiculos 
-from .Listar_Cadastros import Listar_Cadastros 
-from .Cadastro_Proprietarios import Cadastro_Proprietario 
-from .Status_Tela import Status_Tela 
+from screens.Cadastro_Veiculos import TelaCadastroVeiculos 
+from screens.Listar_Cadastros import Listar_Cadastros 
+from screens.Cadastro_Proprietarios import Cadastro_Proprietarios 
 class Tela_Principal:
     
-    
-    def mostrar_opcao():
-        rotulo.config(text=f"Escolheu: {opcao.get()}")
-    
     def abrir_cadastro_veiculos(self):
-        Cadastro_Veiculos()
+        TelaCadastroVeiculos(self.janela)  # Passa a janela principal como master
         
     def abrir_cadastro_proprietario(self):
-        Cadastro_Proprietario()
+        Cadastro_Proprietarios()
         
     def abrir_listar_cadastros(self):
         Listar_Cadastros()
         
     def __init__(self):        
         self.carrega()
-        status = Status_Tela()
     def carrega(self):
-        janela = tk.Tk()
-        def button_clicked():
-            print("Button clicked!")
-        janela.title("Tela Principal")
-        janela.geometry("800x600")
+        self.janela = tk.Tk()
+        self.janela.title("Tela Principal")
+        self.janela.geometry("800x600")
         
-        # Creating a button with specified options
-        cadastro_veiculos = tk.Button(janela, 
+        
+        cadastro_veiculos = tk.Button(self.janela, 
                         text="Cadastrar Veículo", 
                         command=self.abrir_cadastro_veiculos,
                         activebackground="blue", 
@@ -52,7 +47,7 @@ class Tela_Principal:
                         width=15,
                         wraplength=100)
 
-        cadastro_proprietario = tk.Button(janela, 
+        cadastro_proprietario = tk.Button(self.janela, 
                         text="Cadastrar Proprietário", 
                         command=self.abrir_cadastro_proprietario,
                         activebackground="blue", 
@@ -75,7 +70,7 @@ class Tela_Principal:
                         width=15,
                         wraplength=100)
         
-        listar_cadastros = tk.Button(janela, 
+        listar_cadastros = tk.Button(self.janela, 
                         text="Listar Cadastros", 
                         command=self.abrir_listar_cadastros,
                         activebackground="blue", 
@@ -114,9 +109,6 @@ class Tela_Principal:
         
         
         
-        janela.mainloop()
-        
-        
-    def get_entry_value(event):
-        value = entrada.get()
-        return value
+        self.janela.mainloop()
+
+
