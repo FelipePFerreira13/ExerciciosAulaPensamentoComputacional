@@ -29,7 +29,14 @@ class TelaCadastroVeiculos:
             messagebox.showerror("Erro", "Selecione um proprietário!")
             return
         try:
-            Db_Tools.Criar_Veiculo(placa, marca, modelo, ano, tipo, proprietario_id)
+            if tipo == "carro":
+                Db_Tools.Criar_Carro(placa, marca, modelo, ano, tipo, proprietario_id)
+            
+            elif tipo =="caminhao":
+                Db_Tools.Criar_Caminhao(placa, marca, modelo, ano, tipo, proprietario_id)
+            
+            elif tipo =="moto":
+                Db_Tools.Criar_Moto(placa, marca, modelo, ano, tipo, proprietario_id)
             messagebox.showinfo("Sucesso", f"{tipo.capitalize()} cadastrado com sucesso!")
             for entry in entries.values():
                 entry.delete(0, tk.END)

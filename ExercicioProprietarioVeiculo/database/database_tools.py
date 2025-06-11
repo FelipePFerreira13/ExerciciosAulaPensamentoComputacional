@@ -50,3 +50,12 @@ class Db_Tools:
         users = session.query(Usuario).all()
         # Retorna uma lista de tuplas (id, nome)
         return [(user.id, user.nome) for user in users]
+    
+    @staticmethod
+    def Listar_Veiculos():
+        # Exemplo para carros, adapte para motos/caminhões se quiser
+        return [
+            (v.placa, v.modelo, v.ano, v.marca, v.proprietario.nome if v.proprietario else "Sem proprietário")
+            for v in session.query(Carro).all()
+        ]
+
