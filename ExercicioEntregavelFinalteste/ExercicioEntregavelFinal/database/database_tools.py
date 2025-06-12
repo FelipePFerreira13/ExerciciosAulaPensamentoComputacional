@@ -71,11 +71,11 @@ class Db_Tools:
     def Puxar_Alugueis():
         from database.database import Aluguel
         return session.query(Aluguel).all()
-        
+    
+    
     # Busca todos os aluguéis realizados
     @staticmethod
     def Filtrar_Alugueis_Valor(preco):
         from database.database import Aluguel
         return session.query(Aluguel).filter(Aluguel.valor < preco)
-
 
