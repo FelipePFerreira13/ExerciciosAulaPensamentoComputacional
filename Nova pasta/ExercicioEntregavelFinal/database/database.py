@@ -1,5 +1,7 @@
 from __future__ import annotations
 from typing import List
+import os
+
 from sqlalchemy import Column, Integer, DECIMAL, String, Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, declarative_base, relationship
 
@@ -13,8 +15,7 @@ class Usuario(Base):
     cpf = Column(String(11), nullable = False)
     data_nascimento = Column(Date, nullable = False)
     email = Column(String(100), nullable = False)
-    alugueis: Mapped[List["Aluguel"]] = relationship(back_populates="usuarios")
-    
+    # alugueis: Mapped[List["alugueis"]] = relationship(back_populates="usuario")
 
 class Predio(Base):
 
@@ -25,19 +26,17 @@ class Predio(Base):
     bairro = Column(String(50), nullable = False)
     cidade = Column(String(50), nullable = False)
     estado = Column(String(2), nullable = False)
-    apartamentos: Mapped[List["Apartamento"]] = relationship(back_populates="predio")
+    # apartamentos: Mapped[List["apartamentos"]] = relationship(back_populates="predio")
 
 class Apartamento(Base):
 
     __tablename__ = 'apartamentos'
     id : Mapped[int]= mapped_column(primary_key=True)
-    id_predio = Column(Integer, ForeignKey('predios.id'))
+    id_predio = mapped_column(Integer, ForeignKey("predios.id"), nullable = False)
     numero_apartamento = Column(String(10), nullable = False)
-    valor = Column(DECIMAL(10, 2), nullable = False)
-    link_google = Column(String(512), nullable=True)
-
-    predio = relationship("Predio")
-    alugueis: Mapped["Aluguel"] = relationship(back_populates="apartamento")
+    valor = Column(DECIMAL(11,2), nullable = False)
+    # predio: Mapped["predio"] = relationship(back_populates="apartamentos")
+    # alugueis: Mapped["alugueis"] = relationship(back_populates="apartamento")
     
 class Aluguel(Base):
 
@@ -47,5 +46,9 @@ class Aluguel(Base):
     id_usuario = mapped_column(Integer, ForeignKey("usuarios.id"), nullable = False)
     n_semana = Column(Integer, nullable = False)
     valor = Column(DECIMAL(11,2), nullable = False)
-    usuarios: Mapped["Usuario"] = relationship(back_populates="alugueis")
-    apartamento: Mapped["Apartamento"] = relationship(back_populates="alugueis")
+    # usuarios: Mapped["usuario"] = relationship(back_populates="alugueis")
+    # apartamento: Mapped["apartamento"] = relationship(back_populates="alugueis")
+
+# os.remove("database/database.db")
+# engine = create_engine('sqlite:///database/database.db')
+# Base.metadata.create_all(engine)

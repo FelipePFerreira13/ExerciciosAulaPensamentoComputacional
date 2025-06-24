@@ -31,12 +31,10 @@ class Apartamento(Base):
 
     __tablename__ = 'apartamentos'
     id : Mapped[int]= mapped_column(primary_key=True)
-    id_predio = Column(Integer, ForeignKey('predios.id'))
+    id_predio = mapped_column(Integer, ForeignKey("predios.id"), nullable = False)
     numero_apartamento = Column(String(10), nullable = False)
-    valor = Column(DECIMAL(10, 2), nullable = False)
-    link_google = Column(String(512), nullable=True)
-
-    predio = relationship("Predio")
+    valor = Column(DECIMAL(11,2), nullable = False)
+    predio: Mapped["Predio"] = relationship(back_populates="apartamentos")
     alugueis: Mapped["Aluguel"] = relationship(back_populates="apartamento")
     
 class Aluguel(Base):

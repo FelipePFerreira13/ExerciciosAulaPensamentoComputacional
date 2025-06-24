@@ -27,7 +27,7 @@ class TelaPrincipal:
 
         # Crio o card central onde ficam os botões e textos principais
         card = tk.Frame(self.root, bg=CARD_COLOR, bd=0, relief="ridge", highlightthickness=0)
-        card.place(relx=0.5, rely=0.5, anchor="center", width=600, height=800)
+        card.place(relx=0.5, rely=0.5, anchor="center", width=600, height=700)
 
         # Carrega e exibe a logo acima do título DomusShare
         logo_path = os.path.join(os.path.dirname(__file__), "logo.png")
@@ -55,25 +55,15 @@ class TelaPrincipal:
         btn_cadastro.bind("<Enter>", self.on_enter)
         btn_cadastro.bind("<Leave>", self.on_leave)
 
-        # Botão para ir para tela de cadastro de prédio
-        btn_cadastro_predio = tk.Button(
-            card, text="Cadastrar Prédio", command=self.abrir_cadastro_predio,
+        # Botão para ir para tela de listagem de apartamentos
+        btn_listar_apartamentos = tk.Button(
+            card, text="Listar Apartamentos", command=self.abrir_listar_apartamentos,
             bg=BTN_BG, fg=BTN_FG, font=FONT_BTN, bd=0, relief="flat", cursor="hand2",
             activebackground=BTN_HOVER, activeforeground="#223a5e", padx=16, pady=6
         )
-        btn_cadastro_predio.pack(pady=8)
-        btn_cadastro_predio.bind("<Enter>", self.on_enter)
-        btn_cadastro_predio.bind("<Leave>", self.on_leave)
-
-        # Botão para ir para tela de cadastro de aluguel
-        btn_cadastro_aluguel = tk.Button(
-            card, text="Cadastrar Aluguel", command=self.abrir_cadastro_aluguel,
-            bg=BTN_BG, fg=BTN_FG, font=FONT_BTN, bd=0, relief="flat", cursor="hand2",
-            activebackground=BTN_HOVER, activeforeground="#223a5e", padx=16, pady=6
-        )
-        btn_cadastro_aluguel.pack(pady=8)
-        btn_cadastro_aluguel.bind("<Enter>", self.on_enter)
-        btn_cadastro_aluguel.bind("<Leave>", self.on_leave)
+        btn_listar_apartamentos.pack(pady=8)
+        btn_listar_apartamentos.bind("<Enter>", self.on_enter)
+        btn_listar_apartamentos.bind("<Leave>", self.on_leave)
 
         # Botão para ir para tela de listagem de aluguéis
         btn_listar_alugueis = tk.Button(
@@ -108,15 +98,6 @@ class TelaPrincipal:
     # Funções para abrir cada tela do sistema
     def abrir_cadastro_usuario(self):
         os.system('python screens/telaCadastroUsuario.py')
-
-    def abrir_cadastro_predio(self):
-        os.system('python screens/telaCadastroPredio.py')
-
-    def abrir_cadastro_apartamento(self):
-        os.system('python screens/telaCadastroApartamento.py')
-
-    def abrir_cadastro_aluguel(self):
-        os.system('python screens/telaCadastroAlugueis.py')
 
     def abrir_listar_apartamentos(self):
         os.system('python screens/telaApartamentos.py')

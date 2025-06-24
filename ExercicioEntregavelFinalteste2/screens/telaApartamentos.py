@@ -126,7 +126,7 @@ def listar_apartamentos():
 def comprar_apartamento(apartamento_id):
     compra_win = tk.Toplevel(root)
     compra_win.title("Comprar Apartamento")
-    compra_win.geometry("350x180")
+    compra_win.geometry("350x260")
     compra_win.resizable(False, False)
     compra_win.configure(bg=BG_COLOR)
 
@@ -135,18 +135,43 @@ def comprar_apartamento(apartamento_id):
     entry_cpf = tk.Entry(compra_win, font=FONT, width=25, bg="#f7fafc", relief="flat", highlightthickness=1, highlightbackground="#d1d5db")
     entry_cpf.pack(pady=5)
 
+    tk.Label(compra_win, text="Digite a semana (1 a 52):", font=FONT, bg=BG_COLOR).pack(pady=5)
+    entry_semana = tk.Entry(compra_win, font=FONT, width=10, bg="#f7fafc", relief="flat", highlightthickness=1, highlightbackground="#d1d5db")
+    entry_semana.pack(pady=5)
+
     def confirmar_compra():
         cpf = entry_cpf.get().strip()
+        semana = entry_semana.get().strip()
         if not cpf:
             messagebox.showerror("Erro", "Digite um CPF válido.")
             return
+        if not semana.isdigit() or not (1 <= int(semana) <= 52):
+            messagebox.showerror("Erro", "Digite uma semana válida (1 a 52).")
+            return
+
+        semana = int(semana)
+
+        # Verifica se já existe aluguel para esse apartamento e semana
+        alugueis = Db_Tools.Puxar_Alugueis()
+        for aluguel in alugueis:
+            if aluguel.id_apartamento == apartamento_id and aluguel.n_semana == semana:
+                messagebox.showerror("Erro", f"Já existe aluguel para o apartamento {apartamento_id} na semana {semana}.")
+                return
+
+        # Busca o valor do apartamento e calcula o valor do aluguel
+        apartamento = next((a for a in Db_Tools.Puxar_Apartamentos() if a.id == apartamento_id), None)
+        if not apartamento:
+            messagebox.showerror("Erro", "Apartamento não encontrado.")
+            return
+        valor_aluguel = round(apartamento.valor / 52, 2)
+
         try:
-            resultado = Db_Tools.Comprar_Apartamento(apartamento_id, cpf)
+            resultado = Db_Tools.Comprar_Apartamento(apartamento_id, cpf, semana, valor_aluguel)
             if resultado and isinstance(resultado, int):
-                messagebox.showinfo("Sucesso", f"Compra registrada com sucesso!\nSemana alugada: {resultado}")
+                messagebox.showinfo("Sucesso", f"Compra registrada com sucesso!\nSemana alugada: {semana}\nValor do aluguel: R$ {valor_aluguel}")
                 compra_win.destroy()
             else:
-                messagebox.showerror("Erro", "Falha ao registrar compra. Verifique o CPF ou apartamento.")
+                messagebox.showerror("Erro", "Falha ao registrar compra. Verifique o CPF, semana ou apartamento.")
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao registrar compra:\n{e}")
 

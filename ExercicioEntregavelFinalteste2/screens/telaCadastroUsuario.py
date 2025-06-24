@@ -40,66 +40,62 @@ def voltar_para_principal():
     root.destroy()
 
 # Frame central para os formulários e tabelas
-card = tk.Frame(
-    root, bg=CARD_COLOR, bd=2, relief="groove", highlightthickness=0
-)
+card = tk.Frame(root, bg=CARD_COLOR)
 card.place(relx=0.5, rely=0.5, anchor="center")
 
 # Exibe o formulário de cadastro de usuário
 def show_cadastro():
     clear_frame(card)
-    # Título com destaque
     tk.Label(
-        card, text="Cadastro de Usuário", bg=CARD_COLOR, fg=TITLE_COLOR, font=("Segoe UI", 32, "bold"),
-        pady=10
-    ).grid(row=0, column=0, columnspan=2, pady=(0, 25), sticky="n")
+        card, text="Cadastro de Usuário", bg=CARD_COLOR, fg=TITLE_COLOR, font=FONT_TITLE
+    ).grid(row=0, column=0, columnspan=2, pady=(0, 20), sticky="n")
 
-    # Nome
-    tk.Label(card, text="Nome:", bg=CARD_COLOR, font=FONT, anchor="e").grid(row=1, column=0, padx=(40,10), pady=12, sticky="e")
+    # Campo para digitar nome
+    tk.Label(card, text="Nome:", bg=CARD_COLOR, font=FONT, anchor="e").grid(row=1, column=0, padx=(30,10), pady=10, sticky="e")
     global entry_nome
-    entry_nome = tk.Entry(card, width=32, font=FONT, bg="#f1f5fb", relief="flat", highlightthickness=2, highlightbackground="#bfc9d9", highlightcolor="#223a5e")
-    entry_nome.grid(row=1, column=1, padx=(0,40), pady=12, sticky="w")
+    entry_nome = tk.Entry(card, width=32, font=FONT, bg="#f7fafc", relief="flat", highlightthickness=1, highlightbackground="#d1d5db")
+    entry_nome.grid(row=1, column=1, padx=(0,30), pady=10, sticky="w")
 
-    # CPF
-    tk.Label(card, text="CPF:", bg=CARD_COLOR, font=FONT, anchor="e").grid(row=2, column=0, padx=(40,10), pady=12, sticky="e")
+    # Campo para digitar CPF
+    tk.Label(card, text="CPF:", bg=CARD_COLOR, font=FONT, anchor="e").grid(row=2, column=0, padx=(30,10), pady=10, sticky="e")
     global entry_cpf
-    entry_cpf = tk.Entry(card, width=32, font=FONT, bg="#f1f5fb", relief="flat", highlightthickness=2, highlightbackground="#bfc9d9", highlightcolor="#223a5e")
-    entry_cpf.grid(row=2, column=1, padx=(0,40), pady=12, sticky="w")
+    entry_cpf = tk.Entry(card, width=32, font=FONT, bg="#f7fafc", relief="flat", highlightthickness=1, highlightbackground="#d1d5db")
+    entry_cpf.grid(row=2, column=1, padx=(0,30), pady=10, sticky="w")
 
-    # Data de nascimento
-    tk.Label(card, text="Data de Nascimento\n(YYYY-MM-DD):", bg=CARD_COLOR, font=FONT, anchor="e", justify="right").grid(row=3, column=0, padx=(40,10), pady=12, sticky="e")
+    # Campo para digitar data de nascimento
+    tk.Label(card, text="Data de Nascimento\n(YYYY-MM-DD):", bg=CARD_COLOR, font=FONT, anchor="e", justify="right").grid(row=3, column=0, padx=(30,10), pady=10, sticky="e")
     global entry_data
-    entry_data = tk.Entry(card, width=32, font=FONT, bg="#f1f5fb", relief="flat", highlightthickness=2, highlightbackground="#bfc9d9", highlightcolor="#223a5e")
-    entry_data.grid(row=3, column=1, padx=(0,40), pady=12, sticky="w")
+    entry_data = tk.Entry(card, width=32, font=FONT, bg="#f7fafc", relief="flat", highlightthickness=1, highlightbackground="#d1d5db")
+    entry_data.grid(row=3, column=1, padx=(0,30), pady=10, sticky="w")
 
-    # Email
-    tk.Label(card, text="Email:", bg=CARD_COLOR, font=FONT, anchor="e").grid(row=4, column=0, padx=(40,10), pady=12, sticky="e")
+    # Campo para digitar email
+    tk.Label(card, text="Email:", bg=CARD_COLOR, font=FONT, anchor="e").grid(row=4, column=0, padx=(30,10), pady=10, sticky="e")
     global entry_email
-    entry_email = tk.Entry(card, width=32, font=FONT, bg="#f1f5fb", relief="flat", highlightthickness=2, highlightbackground="#bfc9d9", highlightcolor="#223a5e")
-    entry_email.grid(row=4, column=1, padx=(0,40), pady=12, sticky="w")
+    entry_email = tk.Entry(card, width=32, font=FONT, bg="#f7fafc", relief="flat", highlightthickness=1, highlightbackground="#d1d5db")
+    entry_email.grid(row=4, column=1, padx=(0,30), pady=10, sticky="w")
 
-    # Botão cadastrar
+    # Botão para cadastrar usuário no banco
     btn_cadastrar = tk.Button(
         card, text="Cadastrar", command=cadastrar_usuario,
-        bg=BTN_BG, fg=BTN_FG, font=("Segoe UI", 16, "bold"), bd=0, relief="flat", cursor="hand2",
-        activebackground=BTN_HOVER, activeforeground="#223a5e", padx=18, pady=10
+        bg=BTN_BG, fg=BTN_FG, font=FONT_BTN, bd=0, relief="flat", cursor="hand2",
+        activebackground=BTN_HOVER, activeforeground="#223a5e", padx=10, pady=6
     )
-    btn_cadastrar.grid(row=5, column=0, columnspan=2, pady=32)
+    btn_cadastrar.grid(row=5, column=0, columnspan=2, pady=30)
     btn_cadastrar.bind("<Enter>", on_enter)
     btn_cadastrar.bind("<Leave>", on_leave)
 
-    # Navegação
+    # Botão para ir para a tela de usuários (fica embaixo)
     nav_frame = tk.Frame(card, bg=CARD_COLOR)
-    nav_frame.grid(row=6, column=0, columnspan=2, pady=(30, 10))
+    nav_frame.grid(row=6, column=0, columnspan=2, pady=(40, 10))
 
     btn_visualizar = tk.Button(
         nav_frame, text="Visualizar Usuários", command=show_usuarios,
-        bg="#f1f5fb", fg=BTN_BG, font=FONT_BTN, bd=0, relief="flat", cursor="hand2",
-        activebackground="#e9eef6", activeforeground=BTN_BG, padx=10, pady=4, highlightthickness=1, highlightbackground="#bfc9d9"
+        bg=BTN_BG, fg=BTN_FG, font=FONT_BTN, bd=0, relief="flat", cursor="hand2",
+        activebackground=BTN_HOVER, activeforeground="#223a5e", padx=10, pady=4
     )
     btn_visualizar.pack(side="left", padx=20)
-    btn_visualizar.bind("<Enter>", lambda e: btn_visualizar.config(bg=BTN_HOVER, fg="#223a5e"))
-    btn_visualizar.bind("<Leave>", lambda e: btn_visualizar.config(bg="#f1f5fb", fg=BTN_BG))
+    btn_visualizar.bind("<Enter>", on_enter)
+    btn_visualizar.bind("<Leave>", on_leave)
 
 # Exibe a lista de usuários cadastrados e permite deletar pelo ID
 def show_usuarios():

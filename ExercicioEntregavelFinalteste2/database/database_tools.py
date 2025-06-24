@@ -26,12 +26,6 @@ class Db_Tools:
         session.commit()
         return novo_predio
     
-    # Cria um novo apartamento no banco
-    def Criar_Apartamento(id_predio: int, numero_apartamento: int, valor: float, link_google: str) -> Apartamento:
-        novo_apartamento = Apartamento(id_predio=id_predio, numero_apartamento=numero_apartamento, valor=valor, link_google=link_google)
-        session.add(novo_apartamento)
-        session.commit()
-        return novo_apartamento
     
 
     # Busca todos os usuários cadastrados
@@ -49,40 +43,7 @@ class Db_Tools:
     def Deletar_Usuario(usuario_id: int):
         usuario = session.query(Usuario).filter_by(id=usuario_id).first()
         if usuario:
-            session.query(Aluguel).filter_by(id_usuario=usuario_id).delete()
             session.delete(usuario)
-            session.commit()
-            return True
-        return False
-
-    # Deleta um prédio pelo ID
-    @staticmethod
-    def Deletar_Predio(predio_id: int):
-        predio = session.query(Predio).filter_by(id=predio_id).first()
-        if predio:
-            session.query(Apartamento).filter_by(id_predio=predio_id).delete()
-            session.delete(predio)
-            session.commit()
-            return True
-        return False
-
-    # Deleta um apartamento pelo ID
-    @staticmethod
-    def Deletar_Apartamento(apartamento_id: int):
-        apartamento = session.query(Apartamento).filter_by(id=apartamento_id).first()
-        if apartamento:
-            session.query(Aluguel).filter_by(id_apartamento=apartamento_id).delete()
-            session.delete(apartamento)
-            session.commit()
-            return True
-        return False
-
-    # Deleta um aluguel pelo ID
-    @staticmethod
-    def Deletar_Aluguel(aluguel_id: int):
-        aluguel = session.query(Aluguel).filter_by(id=aluguel_id).first()
-        if aluguel:
-            session.delete(aluguel)
             session.commit()
             return True
         return False
